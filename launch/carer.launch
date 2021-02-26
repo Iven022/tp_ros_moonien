@@ -1,0 +1,8 @@
+<launch>
+	<node pkg="button_gui" name="button_state" type="button_node.py"/>
+
+	<node pkg="tp_ros_moonien" name="listen" type="sub.py"/>
+	<node pkg="tp_ros_moonien" name="chatter" type="sub.py" output="screen">
+	</node>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find tp_ros_moonien)/config/carer.rviz" required="true" />
+</launch>

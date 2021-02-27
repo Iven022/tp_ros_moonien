@@ -1,8 +1,7 @@
-# Project title
 
-Square Trajectory using PoseStamped
+###Square Trajectory using PoseStamped
 
-##Description
+## Description
 
 This package contains a node publisher.py that will calculate the coordinates of x and y in order to follow the trajectory of a square. The package also contains a launch file which will automatically open the rviz software alongside a toggle button. The button will have the functionality of controlling the movement of the square.
 
@@ -37,6 +36,7 @@ roslaunch tp_ros_moonien carrer.launch
 ```
 
 You can also run the nodes separately with
+
 ```sh
 roscore
 ```
@@ -48,6 +48,4 @@ rosrun button_gui button_node.py
 ```sh
 rosrun tp_ros_moonien sub.py
 ```
-
-##note
-Do not multi-click the toggle button, the node may crash, please wait atleast 5 seconds before pressing again.
+## Do not multi-click the toggle button, the node may crash, please wait atleast 5 seconds before pressing again.

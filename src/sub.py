@@ -7,49 +7,53 @@ from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Bool
 from Tkinter import *
 
-
-def callback(data):
-
-	if(data.data == True):		
-		pub = rospy.Publisher('chatter', PoseStamped, queue_size=10)
-		rate = rospy.Rate(15) # 15hz
+class carrer:
+	def __init__(self):
+		rospy.init_node('carrer', anonymous=True)
+		self.pub = rospy.Publisher('square_point', PoseStamped, queue_size=10)
+		self.rate = rospy.Rate(15) # 15hz
 						   	
-		message = PoseStamped()
-		length=5
-		message.pose.position.x = 0
-		message.pose.position.y = 0
-		message.header.frame_id='map'
+		self.message = PoseStamped()
+		self.length=5
+		self.state=None
+		self.message.pose.position.x = 0
+		self.message.pose.position.y = 0
+		self.message.header.frame_id='map'
 
-		if(message.pose.position.x == 0 & message.pose.position.y == 0):
-			while (message.pose.position.y != length):
-				message.pose.position.y += 1
-				pub.publish(message)
-				rate.sleep()
-			while (message.pose.position.x != length):
-				message.pose.position.x += 1
-				pub.publish(message)
-				rate.sleep()
+		rospy.Subscriber('button_state', Bool, self.sub_callback)
 		
-		if(message.pose.position.x == length & message.pose.position.y == length):
-			while (message.pose.position.y != 0):
-				message.pose.position.y -= 1
-				pub.publish(message)
-				rate.sleep()
+	def sub_callback(self, data):
+		self.state = data.data
 
-			while (message.pose.position.x != 0):
-				message.pose.position.x -= 1
-				pub.publish(message)
-				rate.sleep()
+	def run(self):
+		while not rospy.is_shutdown():
+			if(self.state == True):
+				if(self.message.pose.position.x == 0 & self.message.pose.position.y == 0):
+					while (self.message.pose.position.y != self.length):
+						self.message.pose.position.y += 1
+						self.pub.publish(self.message)
+						self.rate.sleep()
+					while (self.message.pose.position.x != self.length):
+						self.message.pose.position.x += 1
+						self.pub.publish(self.message)
+						self.rate.sleep()
+		
+				if(self.message.pose.position.x == self.length & self.message.pose.position.y == self.length):
+					while (self.message.pose.position.y != 0):
+						self.message.pose.position.y -= 1
+						self.pub.publish(self.message)
+						self.rate.sleep()
 
-
-def listen():
-    
-    rospy.init_node('listen', anonymous=True)
-    rospy.Subscriber('button_state', Bool, callback)
-    rospy.spin()
+					while (self.message.pose.position.x != 0):
+						self.message.pose.position.x -= 1
+						self.pub.publish(self.message)
+						self.rate.sleep()
+	
 
 if __name__ == '__main__':
     try:
-        listen()
+        node=carrer()
+	node.run()
     except rospy.ROSInterruptException:
         pass
+

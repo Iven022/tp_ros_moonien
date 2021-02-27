@@ -19,7 +19,7 @@ catkin build
 source ~/catkin_ws/devel/setup.bash
 ```
 
-Then repeat the same process with the tp_ros_moonien package:
+2) Then repeat the same process with the tp_ros_moonien package:
 
 ```sh
 cd ~/catkin_ws/src

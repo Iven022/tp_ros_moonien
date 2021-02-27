@@ -32,7 +32,7 @@ source ~/catkin_ws/devel/setup.bash
 After following the installation process, run the following code in the catkin workspace
 
 ```sh
-roslaunch tp_ros_moonien carrer.launch
+roslaunch tp_ros_moonien carer.launch
 ```
 
 You can also run the nodes separately with

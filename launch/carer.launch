@@ -1,8 +1,10 @@
 <launch>
+	
 	<node pkg="button_gui" name="button_state" type="button_node.py"/>
-
-	<node pkg="tp_ros_moonien" name="listen" type="sub.py"/>
-	<node pkg="tp_ros_moonien" name="chatter" type="sub.py" output="screen">
+	<node pkg="tp_ros_moonien" name="carrer" type="sub.py">
+		<remap from="button_state" to="button"/>
+		<remap from="square_point" to ="square"/>
 	</node>
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find tp_ros_moonien)/config/carer.rviz" required="true" />
+
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find tp_ros_moonien)/config/carrer.rviz" required="true" />
 </launch>

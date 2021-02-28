@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(tp_ros_iven)
+project(tp_ros_moonien)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -123,7 +123,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/tp_ros_iven.cpp
+#   src/${PROJECT_NAME}/tp_ros_moonien.cpp
 # )
 
 ## Add cmake target dependencies of the library
